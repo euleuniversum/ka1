@@ -23,14 +23,13 @@ namespace katask1
 
             while (notUsedV.Count > 0)
             {
-                int minE = -1; //номер наименьшего ребра
-                               //поиск наименьшего ребра
+                int minE = int.MinValue; //номер наименьшего ребра
+                                         //поиск наименьшего ребра
                 for (int i = 0; i < notUsedE.Count; i++)
                 {
-                    if ((usedV.IndexOf(notUsedE[i].v1) != -1) && (notUsedV.IndexOf(notUsedE[i].v2) != -1) ||
-                        (usedV.IndexOf(notUsedE[i].v2) != -1) && (notUsedV.IndexOf(notUsedE[i].v1) != -1))
+                    if ((usedV.IndexOf(notUsedE[i].v1) != minE) && (notUsedV.IndexOf(notUsedE[i].v2) != minE))
                     {
-                        if (minE != -1)
+                        if (minE != )
                         {
                             if (notUsedE[i].weight < notUsedE[minE].weight)
                                 minE = i;
