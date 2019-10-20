@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace katask1
 {
-    class ReadWrite
+    class Program
     {
         public static void Main(string[] args)
         {
@@ -13,7 +14,8 @@ namespace katask1
         public static void Read()
         {
             var subStr = File.ReadAllLines("in.txt");
-            //ComponentsBound.N = int.Parse(subStr[0]);
+            Prim.numberV = int.Parse(subStr[0]);
+
             //ComponentsBound.G = new int[ComponentsBound.N][];
 
             //for (int i = 0; i < ComponentsBound.N; i++)
@@ -28,7 +30,9 @@ namespace katask1
             //}
             //ComponentsBound.FindComponents();
 
+            Prim.AlgorithmByPrim(Prim.numberV, E, MST);
+
             File.WriteAllLines("out.txt", vertexList);
-        }
+        
     }
 }
