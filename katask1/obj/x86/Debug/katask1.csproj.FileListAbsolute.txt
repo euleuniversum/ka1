@@ -1,0 +1,6 @@
+/Users/natali/Desktop/ka1/katask1/obj/x86/Debug/katask1.csprojAssemblyReference.cache
+/Users/natali/Desktop/ka1/katask1/obj/x86/Debug/katask1.csproj.CoreCompileInputs.cache
+/Users/natali/Desktop/ka1/katask1/bin/Debug/katask1.exe
+/Users/natali/Desktop/ka1/katask1/bin/Debug/katask1.pdb
+/Users/natali/Desktop/ka1/katask1/obj/x86/Debug/katask1.exe
+/Users/natali/Desktop/ka1/katask1/obj/x86/Debug/katask1.pdb
