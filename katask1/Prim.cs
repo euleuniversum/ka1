@@ -14,45 +14,38 @@ namespace katask1
             //неиспользованные вершины
             List<int> notUsedV = new List<int>();
 
-            for (int i = 0; i < numberV; i++)
+            for (int i = 1; i <= numberV; i++)
                 notUsedV.Add(i);
-            //выбираем случайную начальную вершину
-            Random rand = new Random();
-            usedV.Add(rand.Next(0, numberV));
+
+            usedV.Add(1);
             notUsedV.RemoveAt(usedV[0]);
 
             while (notUsedV.Count > 0)
             {
-                int minE = -1; //номер наименьшего ребра
-                               //поиск наименьшего ребра
+                int minE = int.MaxValue; //номер наименьшего ребра
+                                         //поиск наименьшего ребра
+                Edge vMinE;
                 for (int i = 0; i < notUsedE.Count; i++)
                 {
-                    if ((usedV.IndexOf(notUsedE[i].v1) != -1) && (notUsedV.IndexOf(notUsedE[i].v2) != -1) ||
-                        (usedV.IndexOf(notUsedE[i].v2) != -1) && (notUsedV.IndexOf(notUsedE[i].v1) != -1))
+                    if (usedV.Contains(notUsedE[i].v1))
                     {
-                        if (minE != -1)
+                        if (minE >= notUsedE[i].weight)
                         {
-                            if (notUsedE[i].weight < notUsedE[minE].weight)
-                                minE = i;
+                            minE = notUsedE[i].weight;
+                            vMinE = notUsedE[i];
                         }
-                        else
-                            minE = i;
                     }
                 }
                 //заносим новую вершину в список использованных и удаляем ее из списка неиспользованных
-                if (usedV.IndexOf(notUsedE[minE].v1) != -1)
+                if (minE != int.MaxValue)
                 {
-                    usedV.Add(notUsedE[minE].v2);
-                    notUsedV.Remove(notUsedE[minE].v2);
+                    usedV.Add(vMinE.v2);
+                    notUsedV.Remove(vMinE.v2);
                 }
-                else
-                {
-                    usedV.Add(notUsedE[minE].v1);
-                    notUsedV.Remove(notUsedE[minE].v1);
-                }
+
                 //заносим новое ребро в дерево и удаляем его из списка неиспользованных
-                MST.Add(notUsedE[minE]);
-                notUsedE.RemoveAt(minE);
+                MST.Add(vMinE);
+                notUsedE.Remove(vMinE);
             }
             return MST;
         }
