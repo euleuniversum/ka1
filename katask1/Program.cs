@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace katask1
 {
@@ -14,25 +16,29 @@ namespace katask1
         public static void Read()
         {
             var subStr = File.ReadAllLines("in.txt");
-            Prim.numberV = int.Parse(subStr[0]);
+            var numberV = int.Parse(subStr[0]);
 
-            //ComponentsBound.G = new int[ComponentsBound.N][];
+            List<Edge> E = new List<Edge>();
 
-            //for (int i = 0; i < ComponentsBound.N; i++)
-            //{
-            //    for (int j = 0; j < ComponentsBound.N; j++)
-            //    {
-            //        if (subStr[i + 1].Contains((j + 1).ToString()))
-            //            ComponentsBound.G[i][j] = 1;
-            //        else
-            //            ComponentsBound.G[i][j] = 0;
-            //    }
-            //}
-            //ComponentsBound.FindComponents();
+            for (int i = 0; i < numberV; i++)
+            {
+                int[] V = Array.ConvertAll(Regex.Split(subStr[i], @"\s+"), int.Parse);
 
-            Prim.AlgorithmByPrim(Prim.numberV, E, MST);
 
-            File.WriteAllLines("out.txt", vertexList);
+                for (int j = 0; j < numberV; j++)
+                {
+                    if (V[j] != 32767)
+                    {
+                        var newV = new Edge(i, j, V[j]);
+                        E.Add(newV);
+                    }
+                }
+            }
+
+
+            //var result = Prim.AlgorithmByPrim(numberV, E, MST);
+
+            //File.WriteAllLines("out.txt", result);
         
     }
 }
