@@ -22,30 +22,30 @@ namespace katask1
 
             while (notUsedV.Count > 0)
             {
-                int minE = int.MaxValue; //номер наименьшего ребра
+                int minE = int.MaxValue;
+                int numbE = int.MaxValue; //номер наименьшего ребра
                                          //поиск наименьшего ребра
-                Edge vMinE;
                 for (int i = 0; i < notUsedE.Count; i++)
                 {
-                    if (usedV.Contains(notUsedE[i].v1))
+                    if ((usedV.Contains(notUsedE[i].v1)))
                     {
                         if (minE >= notUsedE[i].weight)
                         {
                             minE = notUsedE[i].weight;
-                            vMinE = notUsedE[i];
+                            numbE = i;
                         }
                     }
                 }
                 //заносим новую вершину в список использованных и удаляем ее из списка неиспользованных
                 if (minE != int.MaxValue)
                 {
-                    usedV.Add(vMinE.v2);
-                    notUsedV.Remove(vMinE.v2);
+                    usedV.Add(notUsedE[numbE].v2);
+                    notUsedV.Remove(notUsedE[numbE].v2);
                 }
 
                 //заносим новое ребро в дерево и удаляем его из списка неиспользованных
-                MST.Add(vMinE);
-                notUsedE.Remove(vMinE);
+                MST.Add(notUsedE[numbE]);
+                notUsedE.Remove(notUsedE[numbE]);
             }
             return MST;
         }
