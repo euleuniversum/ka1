@@ -1,10 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace katask1
 {
     public class Prim
     {
+        public static int sumWeight = 0;
+
         public static List<Edge> AlgorithmByPrim(int numberV, List<Edge> E, List<Edge> MST)
         {
             //неиспользованные ребра
@@ -17,8 +20,9 @@ namespace katask1
             for (int i = 1; i <= numberV; i++)
                 notUsedV.Add(i);
 
-            usedV.Add(1);
-            notUsedV.RemoveAt(usedV[0]);
+            Random rand = new Random();
+            usedV.Add(rand.Next(1, numberV+1));
+            notUsedV.Remove(usedV[0]);
 
             while (notUsedV.Count > 0)
             {
@@ -37,17 +41,23 @@ namespace katask1
                     }
                 }
                 //заносим новую вершину в список использованных и удаляем ее из списка неиспользованных
-                if (minE != int.MaxValue)
+                if (minE != int.MaxValue && (usedV.IndexOf(notUsedE[numbE].v1) != -1 || usedV.IndexOf(notUsedE[numbE].v2) != -1))
                 {
                     usedV.Add(notUsedE[numbE].v2);
-                    notUsedV.Remove(notUsedE[numbE].v2);
+                    sumWeight += minE; 
+                    notUsedV.Remove(notUsedE[numbE].v1);
                 }
-
-                //заносим новое ребро в дерево и удаляем его из списка неиспользованных
                 MST.Add(notUsedE[numbE]);
                 notUsedE.Remove(notUsedE[numbE]);
+                //заносим новое ребро в дерево и удаляем его из списка неиспользованных
+
             }
-            return MST;
+
+            var sortedMST = from u in MST
+                            orderby u.v1, u.v2
+                            select u;
+            sumWeight = Math.Abs(sumWeight);
+            return (System.Collections.Generic.List<katask1.Edge>)sortedMST;
         }
     }
 }

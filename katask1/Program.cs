@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace katask1
@@ -38,8 +39,25 @@ namespace katask1
             List<Edge> MST = new List<Edge>();
 
             var result = Prim.AlgorithmByPrim(numberV, E, MST);
+            string[] spis = new string[numberV+1];
 
-            File.WriteAllLines("out.txt", (System.Collections.Generic.IEnumerable<string>)result);
+            for (int i = 1; i <= numberV;i++)
+            {
+                var str = new StringBuilder();
+                str.Append(i.ToString());
+                for (var j=0; j<result.Count;j++)
+                {
+                    if (result[j].v1 == i)
+                        str.Append(" "+result[j].v2);
+                }
+                str.Append(" 0");
+                spis[i-1] = str.ToString();
+            }
+
+            spis[numberV] = Prim.sumWeight.ToString();
+
+
+            File.WriteAllLines("out.txt", spis);
 
         }
     }
