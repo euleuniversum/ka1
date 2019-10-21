@@ -20,8 +20,7 @@ namespace katask1
             for (int i = 1; i <= numberV; i++)
                 notUsedV.Add(i);
 
-            Random rand = new Random();
-            usedV.Add(rand.Next(1, numberV+1));
+            usedV.Add(1);
             notUsedV.Remove(usedV[0]);
 
             while (notUsedV.Count > 0)
@@ -44,8 +43,8 @@ namespace katask1
                 if (minE != int.MaxValue && (usedV.IndexOf(notUsedE[numbE].v1) != -1 || usedV.IndexOf(notUsedE[numbE].v2) != -1))
                 {
                     usedV.Add(notUsedE[numbE].v2);
-                    sumWeight += minE; 
                     notUsedV.Remove(notUsedE[numbE].v1);
+                    sumWeight += minE;
                 }
                 MST.Add(notUsedE[numbE]);
                 notUsedE.Remove(notUsedE[numbE]);
@@ -56,8 +55,9 @@ namespace katask1
             var sortedMST = from u in MST
                             orderby u.v1, u.v2
                             select u;
-            sumWeight = Math.Abs(sumWeight);
-            return (System.Collections.Generic.List<katask1.Edge>)sortedMST;
+            List<Edge> result = sortedMST.ToList();
+            sumWeight = Math.Abs(sumWeight)/2;
+            return result;
         }
     }
 }
