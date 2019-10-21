@@ -1,16 +1,15 @@
 ﻿<Properties StartupConfiguration="{EBAF57F3-D681-45CE-BB20-3A77D47298D8}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Prim.cs">
     <Files>
-      <File FileName="Program.cs" Line="46" Column="1" />
-      <File FileName="Prim.cs" Line="61" Column="1" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Prim.cs" Line="51" Column="31" />
+      <File FileName="Edge.cs" Line="16" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Option id="ShowAllFiles" value="True" />
           <Node name="katask1" expanded="True">
             <Node name="katask1" expanded="True">
-              <Node name="Properties" expanded="True" />
               <Node name="Prim.cs" selected="True" />
             </Node>
           </Node>
